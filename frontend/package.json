@@ -1,0 +1,22 @@
+{
+  "name": "dics-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend for Decentralized Insurance Claim Settlement (DICS)",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "ethers": "^6.13.0",
+    "web3modal": "^2.4.7",
+    "axios": "^1.7.4"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
