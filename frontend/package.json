@@ -10,16 +10,15 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "ethers": "^6.13.0",
-    "web3modal": "^2.4.3",
-    "axios": "^1.7.4",
-    "@web3modal/react": "^3.5.5",
-    "@web3modal/ethereum": "^3.5.5",
-    "@web3modal/core": "^3.5.5"
-  },
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-scripts": "5.0.1",
+  "ethers": "^6.13.0",
+  "@web3modal/react": "^3.4.3",
+  "@web3modal/ethereum": "^3.4.3",
+  "@web3modal/core": "^3.4.3",
+  "axios": "^1.7.4"
+},
   "devDependencies": {},
   "license": "MIT"
 }
