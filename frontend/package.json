@@ -14,7 +14,7 @@
   "react-dom": "^18.2.0",
   "react-scripts": "5.0.1",
   "ethers": "^6.13.0",
-  "@web3modal/react": "^3.4.3",
+  "@web3modal/react": "^2.7.1",
   "@web3modal/core": "^3.4.3",
   "@web3modal/ethereum": "^2.7.1",
   "axios": "^1.7.4"
