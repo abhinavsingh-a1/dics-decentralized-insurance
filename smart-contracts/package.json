@@ -1,0 +1,14 @@
+{
+  "name": "dics-smart-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for Decentralized Insurance Claim Settlement (DICS)",
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.1",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0"
+  },
+  "license": "MIT"
+}
