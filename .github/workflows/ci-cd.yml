@@ -1,0 +1,58 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test-deploy:
+    if: ${{ false }}  # ← This prevents the job from running temporarily
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node & Python
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install Backend Deps
+        run: pip install -r backend/requirements.txt
+
+      - name: Backend Tests
+        run: pytest backend/tests --maxfail=1 --disable-warnings -q
+
+      - name: Frontend Build
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Build Docker Images
+        run: |
+          docker build -f devops/docker/backend.Dockerfile -t dics-backend .
+          docker build -f devops/docker/frontend.Dockerfile -t dics-frontend .
+          docker build -f devops/docker/indexer.Dockerfile -t dics-indexer .
+
+      - name: Push to GitHub Container Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker tag dics-backend ghcr.io/${{ github.repository }}/backend:latest
+          docker push ghcr.io/${{ github.repository }}/backend:latest
+
+      - name: Deploy to EKS
+        uses: aws-actions/eks-deploy@v2
+        with:
+          cluster-name: dics-cluster
+          manifests: |
+            devops/k8s/backend-deployment.yaml
+            devops/k8s/frontend-deployment.yaml
+            devops/k8s/indexer-deployment.yaml
