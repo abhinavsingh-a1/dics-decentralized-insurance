@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dics-backend
+  labels:
+    app: dics-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dics-backend
+  template:
+    metadata:
+      labels:
+        app: dics-backend
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/aurelialabs/dics-backend:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: backend-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dics-backend-service
+spec:
+  type: ClusterIP
+  selector:
+    app: dics-backend
+  ports:
+    - port: 8000
+      targetPort: 8000
