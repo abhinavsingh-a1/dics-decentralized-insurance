@@ -1,33 +1,29 @@
 name: DICS CI Pipeline
-
-on:
+'on':
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
   jobs:
     build-test:
       runs-on: ubuntu-latest
-
       defaults:
         run:
           working-directory: smart-contracts
-
       services:
         postgres:
-          image: postgres:14
-          ports: [5432:5432]
+          image: 'postgres:14'
+          ports:
+            - '5432:5432'
           env:
             POSTGRES_USER: testuser
             POSTGRES_PASSWORD: testpass
             POSTGRES_DB: testdb
           options: >-
-            --health-cmd "pg_isready -U testuser" 
-            --health-interval 10s 
-            --health-timeout 5s 
-            --health-retries 5
-
+            --health-cmd "pg_isready -U testuser"  --health-interval 10s 
+            --health-timeout 5s  --health-retries 5
       steps:
         - name: Checkout code
           uses: actions/checkout@v4
