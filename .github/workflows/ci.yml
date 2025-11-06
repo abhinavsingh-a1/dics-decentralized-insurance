@@ -10,6 +10,10 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: smart-contracts
+
     services:
       postgres:
         image: postgres:14
@@ -52,6 +56,15 @@ jobs:
         run: |
           cd smart-contracts
           npm install
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev hardhat
+          npm install --save @openzeppelin/contracts
+          npm install
+
+      - name: Compile contracts
+        run: npx hardhat compile
 
       - name: Run smart contract tests
         run: |
