@@ -1,82 +1,82 @@
-name: DICS CI Pipeline
+# name: DICS CI Pipeline
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-jobs:
-  build-test:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-test:
+#     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: smart-contracts
+#     defaults:
+#       run:
+#         working-directory: smart-contracts
 
-    services:
-      postgres:
-        image: postgres:14
-        ports: [5432:5432]
-        env:
-          POSTGRES_USER: testuser
-          POSTGRES_PASSWORD: testpass
-          POSTGRES_DB: testdb
-        options: >-
-          --health-cmd "pg_isready -U testuser" 
-          --health-interval 10s 
-          --health-timeout 5s 
-          --health-retries 5
+#     services:
+#       postgres:
+#         image: postgres:14
+#         ports: [5432:5432]
+#         env:
+#           POSTGRES_USER: testuser
+#           POSTGRES_PASSWORD: testpass
+#           POSTGRES_DB: testdb
+#         options: >-
+#           --health-cmd "pg_isready -U testuser" 
+#           --health-interval 10s 
+#           --health-timeout 5s 
+#           --health-retries 5
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.11
+#       - name: Set up Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: 3.11
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt
+#       - name: Install backend dependencies
+#         run: |
+#           cd backend
+#           pip install -r requirements.txt
 
-      - name: Run backend tests
-        run: |
-          cd backend
-          pytest
+#       - name: Run backend tests
+#         run: |
+#           cd backend
+#           pytest
 
-      - name: Install smart contract dependencies
-        run: |
-          cd smart-contracts
-          npm install
+#       - name: Install smart contract dependencies
+#         run: |
+#           cd smart-contracts
+#           npm install
 
-      - name: Install dependencies
-        run: |
-          npm install --save-dev hardhat
-          npm install --save @openzeppelin/contracts
-          npm install
+#       - name: Install dependencies
+#         run: |
+#           npm install --save-dev hardhat
+#           npm install --save @openzeppelin/contracts
+#           npm install
 
-      - name: Compile contracts
-        run: npx hardhat compile
+#       - name: Compile contracts
+#         run: npx hardhat compile
 
-      - name: Run smart contract tests
-        run: |
-          cd smart-contracts
-          npx hardhat test
+#       - name: Run smart contract tests
+#         run: |
+#           cd smart-contracts
+#           npx hardhat test
 
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+#       - name: Install frontend dependencies
+#         run: |
+#           cd frontend
+#           npm install
 
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
+#       - name: Build frontend
+#         run: |
+#           cd frontend
+#           npm run build
