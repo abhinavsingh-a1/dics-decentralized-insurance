@@ -6,9 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# jobs:
-#   build-test:
-#     runs-on: ubuntu-latest
+  jobs:
+    build-test:
+      runs-on: ubuntu-latest
 
 #     defaults:
 #       run:
