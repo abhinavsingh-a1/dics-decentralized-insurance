@@ -1,3 +1,8 @@
+smart-contracts/cache/
+smart-contracts/artifacts/
+smart-contracts/node_modules/
+smart-contracts/typechain/
+smart-contracts/coverage/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -35,6 +40,12 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+
+# SSH keys
+id_rsa
+id_ed25519
+*.pem
+*.key
 
 # Unit test / coverage reports
 htmlcov/
