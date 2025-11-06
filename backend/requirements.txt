@@ -1,5 +1,15 @@
-fastapi
-uvicorn
-psycopg2-binary
-redis
-pytest
+fastapi==0.95.2
+uvicorn[standard]==0.22.0
+sqlmodel==0.0.8
+asyncpg==0.27.0
+alembic==1.11.1
+redis==4.6.0
+python-jose[cryptography]==3.3.0
+eth-account==0.8.1
+httpx==0.24.1
+pytest==7.4.0
+pytest-asyncio==0.21.0
+boto3==1.28.0
+ipfshttpclient==0.8.0a2   # optional; requires local IPFS node or API provider
+python-multipart==0.0.6   # if you want form file uploads
+pydantic==2.5.1
