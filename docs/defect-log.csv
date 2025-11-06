@@ -1,0 +1,3 @@
+ID,Severity,Title,Description,Status,Assignee,FoundIn
+D-001,Major,Reentrancy risk in payoutClaim,`payoutClaim` performs external token.transfer without reentrancy guard,Open,DeveloperName,ClaimRegistry.sol
+D-002,Minor,Missing NatSpec,Public functions missing NatSpec,Open,DeveloperName,InsurancePolicy.sol
