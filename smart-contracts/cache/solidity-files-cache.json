@@ -491,6 +491,42 @@
       "artifacts": [
         "OracleInterface"
       ]
+    },
+    "/home/abhinav/dics-decentralized-insurance/dics-decentralized-insurance/smart-contracts/contracts/MockOracle.sol": {
+      "lastModificationDate": 1762421709086,
+      "contentHash": "dbecfac386eb96b44a4129c11ededf7a",
+      "sourceName": "contracts/MockOracle.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.17"
+      ],
+      "artifacts": [
+        "MockOracle"
+      ]
     }
   }
 }
