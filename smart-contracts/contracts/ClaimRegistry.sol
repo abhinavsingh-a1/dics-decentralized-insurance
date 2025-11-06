@@ -42,8 +42,10 @@ contract ClaimRegistry is AccessControl {
     address public payoutToken; // an ERC20 token used for payouts
 
     constructor(address admin, address oracleAddress, address tokenAddress) {
-        _setupRole(DEFAULT_ADMIN_ROLE, admin);
-        _setupRole(ADMIN_ROLE, admin);
+        _grantRole(DEFAULT_ADMIN_ROLE, admin);
+        _grantRole(ADMIN_ROLE, admin);
+        //_setupRole(DEFAULT_ADMIN_ROLE, admin);
+        //_setupRole(ADMIN_ROLE, admin);
         oracle = IOracle(oracleAddress);
         payoutToken = tokenAddress;
     }

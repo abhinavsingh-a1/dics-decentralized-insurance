@@ -20,8 +20,10 @@ contract InsurancePolicy is AccessControl {
     event PolicyRegistered(uint256 indexed policyId, address indexed holder, uint256 validFrom, uint256 validUntil, string meta);
 
     constructor(address admin) {
-        _setupRole(DEFAULT_ADMIN_ROLE, admin);
-        _setupRole(ADMIN_ROLE, admin);
+        //_setupRole(DEFAULT_ADMIN_ROLE, admin);
+        //_setupRole(ADMIN_ROLE, admin);
+        _grantRole(DEFAULT_ADMIN_ROLE, admin);
+        _grantRole(ADMIN_ROLE, admin);
     }
 
     function registerPolicy(
