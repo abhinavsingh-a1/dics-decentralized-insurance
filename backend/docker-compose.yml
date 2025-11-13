@@ -15,6 +15,10 @@ services:
     ports:
       - "6379:6379"
     command: ["redis-server", "--save", "60", "1"]
-
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    ports:
+      - "5001:5001"
+      - "8080:8080"
 volumes:
   db-data:
