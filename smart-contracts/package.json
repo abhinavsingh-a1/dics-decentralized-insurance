@@ -5,7 +5,9 @@
   "scripts": {
     "test": "hardhat test",
     "coverage": "hardhat coverage",
-    "compile": "hardhat compile"
+    "compile": "hardhat compile",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run --network localhost scripts/deploy-local.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
