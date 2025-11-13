@@ -7,10 +7,11 @@ smart-contracts/coverage/
 __pycache__/
 *.py[codz]
 *$py.class
-
+node_modules
 # C extensions
 *.so
-
+/dist
+/build
 # Distribution / packaging
 .Python
 build/
@@ -36,7 +37,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-
+.DS_Store
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -46,12 +47,14 @@ id_rsa
 id_ed25519
 *.pem
 *.key
-
+*.pyc
 # Unit test / coverage reports
 htmlcov/
 .tox/
 .nox/
 .coverage
+coverage
+coverage.json
 .coverage.*
 .cache
 nosetests.xml
@@ -175,7 +178,7 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
-
+.idea/
 # Cython debug symbols
 cython_debug/
 
@@ -191,7 +194,8 @@ cython_debug/
 # Ignore directories containing user credentials, local state, and settings.
 # Learn more at https://abstra.io/docs
 .abstra/
-
+.vscode/
+.env.local
 # Visual Studio Code
 #  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
