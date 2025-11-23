@@ -2,14 +2,16 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 interface IOracle {
     function requestData(bytes32 requestId, string calldata endpoint) external;
 }
 
 /// @title ClaimRegistry — Registers claims, manages lifecycle, performs payouts (token)
-contract ClaimRegistry is AccessControl {
+contract ClaimRegistry is AccessControl, ReentrancyGuard {
+
     bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
     bytes32 public constant UNDERWRITER_ROLE = keccak256("UNDERWRITER_ROLE");
 
@@ -78,7 +80,7 @@ contract ClaimRegistry is AccessControl {
     }
 
     /// underwriter triggers payout after approval; contract must have token allowance or balance
-    function payoutClaim(uint256 claimId) external onlyRole(UNDERWRITER_ROLE) {
+    function payoutClaim(uint256 claimId) external onlyRole(UNDERWRITER_ROLE) nonReentrant {
         Claim storage c = claims[claimId];
         require(c.claimId != 0, "Claim not found");
         require(c.status == ClaimStatus.Approved, "Claim not approved");
