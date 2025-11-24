@@ -19,6 +19,14 @@ async def get_current_user(authorization: Optional[str] = Header(None)):
     # very light dependency wrapper
     return await get_current_address(authorization=authorization)
 
+async def get_current_address(authorization: Optional[str] = Header(None)):
+    if not authorization:
+        raise HTTPException(status_code=401, detail="Missing authorization")
+    scheme, token = authorization.split()
+    from jose import jwt
+    payload = jwt.decode(token, os.getenv("SECRET_KEY", "replace_with_secret"), algorithms=[os.getenv("JWT_ALGO","HS256")])
+    return payload["sub"]
+
 @router.post("", response_model=ClaimResp, status_code=201)
 async def create_claim(payload: CreateClaimReq, authorization: Optional[str] = Header(None), db=Depends(get_db)):
     claimant = await get_current_address(authorization=authorization)
