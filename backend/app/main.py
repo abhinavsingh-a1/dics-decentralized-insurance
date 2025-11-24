@@ -9,7 +9,7 @@ from opentelemetry.exporter.otlp.proto.grpc.exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
-app = FastAPI(title="DICS Backend - Aurelia Labs", version="0.1.0")
+app = FastAPI(title="DICS Backend", version="0.1.0")
 
 app.include_router(auth_routes.router)
 app.include_router(claims_routes.router)
@@ -25,10 +25,17 @@ app.add_middleware(
 async def startup_event():
     # init DB
     await init_db()
+    try:
+        tracer_provider = TracerProvider()
+        otlp_exporter = OTLPSpanExporter(endpoint=os.getenv("OTEL_COLLECTOR", "http://localhost:4317"), insecure=True)
+        tracer_provider.add_span_processor(BatchSpanProcessor(otlp_exporter))
+        FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer_provider)
+    except Exception:
+        pass
 
 @app.get("/")
 def root():
-    return {"message": "DICS Backend (Aurelia Labs)"}
+    return {"message": "DICS Backend"}
 
 
 # Setup OpenTelemetry
