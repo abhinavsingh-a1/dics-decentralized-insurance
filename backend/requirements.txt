@@ -13,3 +13,7 @@ boto3==1.28.0
 ipfshttpclient==0.8.0a2   # optional; requires local IPFS node or API provider
 python-multipart==0.0.6   # if you want form file uploads
 pydantic==2.5.1
+opentelemetry-api==1.25.0
+opentelemetry-sdk==1.25.0
+opentelemetry-instrumentation-fastapi==0.37b0
+opentelemetry-exporter-otlp==1.25.0
