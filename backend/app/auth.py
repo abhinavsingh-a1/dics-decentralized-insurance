@@ -32,7 +32,7 @@ async def verify_signature(address: str, signature: str) -> bool:
     nonce = await r.get(f"nonce:{address.lower()}")
     if not nonce:
         return False
-    message = f"Aurelia Labs login nonce: {nonce}"
+    message = f"login nonce: {nonce}"
     encoded = encode_defunct(text=message)
     try:
         recovered = Account.recover_message(encoded, signature=signature)
