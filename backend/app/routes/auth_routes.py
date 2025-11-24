@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, HTTPException
+from fastapi import APIRouter, Body, HTTPException, Query
 from ..auth import generate_nonce, verify_signature, create_access_token
 from ..schemas import AuthNonceResponse, AuthRequest, TokenResponse
 
